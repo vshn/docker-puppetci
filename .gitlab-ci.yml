@@ -13,18 +13,26 @@ build:3:
   stage: build
   script:
     - docker build -t registry.vshn.net/vshn-docker/puppetci:3 -f Dockerfile3 .
+  tags:
+    - dockerbuild
 
 build:4:
   stage: build
   script:
     - docker build -t registry.vshn.net/vshn-docker/puppetci:4 -f Dockerfile4 .
+  tags:
+    - dockerbuild
 
 deploy:3:
   stage: deploy
   script:
     - docker push registry.vshn.net/vshn-docker/puppetci:3
+  tags:
+    - dockerbuild
 
 deploy:4:
   stage: deploy
   script:
     - docker push registry.vshn.net/vshn-docker/puppetci:4
+  tags:
+    - dockerbuild
