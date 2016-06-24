@@ -5,5 +5,5 @@ set -euo pipefail
 # code should be clean of warnings
 
 puppet-lint . \
---no-80chars-check \
+--no-140chars-check \
 --fail-on-warnings \
