@@ -2,37 +2,20 @@ image: docker:latest
 services:
   - docker:dind
 
-stages:
-  - build
-  - deploy
-
 before_script:
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.vshn.net
 
-build:3:
-  stage: build
+puppetci:3:
   script:
     - docker build -t registry.vshn.net/vshn-docker/puppetci:3 -f Dockerfile3 .
-  tags:
-    - dockerbuild
-
-build:4:
-  stage: build
-  script:
-    - docker build -t registry.vshn.net/vshn-docker/puppetci:4 -f Dockerfile4 .
-  tags:
-    - dockerbuild
-
-deploy:3:
-  stage: deploy
-  script:
     - docker push registry.vshn.net/vshn-docker/puppetci:3
   tags:
     - dockerbuild
 
-deploy:4:
-  stage: deploy
+puppetci:4:
   script:
+    - docker build -t registry.vshn.net/vshn-docker/puppetci:4 -f Dockerfile4 .
     - docker push registry.vshn.net/vshn-docker/puppetci:4
   tags:
     - dockerbuild
+
